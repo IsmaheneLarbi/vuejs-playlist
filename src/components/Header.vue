@@ -18,7 +18,7 @@ export default {
   methods:{
     changeTitle()
     {
-      this.title = "Aint nobody fresher than my clique"; 
+      this.$emit("changeTitle", "Vue wizards"); 
     }
   }
 }
