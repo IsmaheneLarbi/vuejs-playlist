@@ -1,14 +1,24 @@
 <template>
   <header>
-    <h1>{{title}}</h1>
+    <h1 v-on:click="changeTitle">{{title}}</h1>
   </header>
 </template>
 
 <script>
 export default {
-  data () {
+  props:{
+    title:{
+      type:String,
+    }
+  },
+  data() {
     return {
-        title:"Vue ninjas",
+    };
+  },
+  methods:{
+    changeTitle()
+    {
+      this.title = "Aint nobody fresher than my clique"; 
     }
   }
 }
