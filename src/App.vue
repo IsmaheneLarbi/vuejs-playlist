@@ -1,8 +1,17 @@
 <template>
   <div>
     <form-helper>
-      <h2 slot="title">{{title}}</h2>
-      <p slot="p">I am the paragraph of the slot</p>
+    <div slot="form-header">
+      <h3>Log in </h3>
+      <p>This will give you access to your profile</p>
+    </div> 
+    <div slot="form-fields">
+      <input type="text" placeholder="name" required />
+      <input type="password" placeholder="password" required/>
+    </div>
+    <div slot="form-controls">
+      <button v-on:click="handleSubmit">Submit</button>
+    </div>
     </form-helper>
   </div>
 </template>
@@ -28,5 +37,8 @@ export default {
 </script>
 
 <style>
-
+body{
+    margin: 0;
+    font-family: 'Nunito SemiBold';
+}
 </style>
