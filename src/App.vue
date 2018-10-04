@@ -1,25 +1,19 @@
 <template>
   <div>
-    <keep-alive>
-      <component v-bind:is="component"></component>
-    </keep-alive>
-    <button v-on:click="component='form-one'">Show form One</button>
-    <button v-on:click="component='form-two'">Show form Two</button>
+    <add-blog></add-blog>
   </div>
 </template>
 
 <script>
 
-import formOne from './components/formOne.vue';
-import formTwo from './components/formTwo.vue';
+import addBlog from './components/addBlog.vue';
 
 export default {
   components:{
-    'form-one':formOne,
-    'form-two':formTwo,
+    'add-blog':addBlog,
   },
   data () {
-    return {component:'form-two'
+    return {
   };
 },
   methods:{
@@ -30,7 +24,7 @@ export default {
 
 <style>
 body{
-    margin: 0;
-    font-family: 'Nunito SemiBold';
+  margin: 0;
+  font-family: 'Nunito SemiBold';
 }
 </style>
