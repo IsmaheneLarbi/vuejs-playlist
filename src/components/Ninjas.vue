@@ -7,6 +7,7 @@
           </li>
       </ul>
       <button v-on:click="deleteNinja">deleteNinja</button>
+      <button v-on:click="addNinja">addNinja</button>
   </div>
 </template>
 
@@ -27,7 +28,32 @@ export default {
     methods:{
         deleteNinja(){
             this.ninjas.pop();
+        },
+        addNinja()
+        {
+            this.ninjas.push({name: 'Ismahene', speciality: 'Data Analyst', show: false});
         }
+    },
+    //life-cycle hooks
+    beforeCreate(){
+        alert("Before create");
+    },
+    //fetch data from db here
+    created(){
+        alert("created");
+    },
+    beforeMount(){
+        alert("before mount");
+    },
+    //manipulate DOM once it's been mounted
+    mounted(){
+        alert("mounted");
+    },
+    beforeUpdate(){
+        alert("before update");
+    },
+    updated(){
+        alert("updated");
     },
 }
 </script>
