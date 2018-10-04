@@ -6,12 +6,26 @@
 			<input type="text" v-model.lazy="blog.title" required/>
 			<label>Blog Content</label>
 			<textarea v-model.lazy="blog.content"></textarea>
+			<div id="checkboxes">
+				<label>Ninjas</label>
+				<input type="checkbox" value="ninjas" v-model="blog.categories"/>
+				<label>Wizards</label>
+				<input type="checkbox" value="wizards" v-model="blog.categories"/>
+				<label>Super heroes</label>
+				<input type="checkbox" value="super heroes" v-model="blog.categories"/>			
+				<label>Coders</label>
+				<input type="checkbox" value="coders" v-model="blog.categories"/>
+			</div>
 		</form>
 		<div id="preview">
 			<h3>Preview Blog</h3>
 			<p>Blog Title:{{blog.title}}</p>
 			<p>Blog content:</p>
 			<p>{{blog.content}}</p>
+			<p>Blog Categories</p>
+			<ul>
+				<li v-for="category in blog.categories">{{category}}</li>
+			</ul>
 		</div>
 	</div>	
 </template>
@@ -22,7 +36,8 @@
     return {
     	blog:{
     		title:"binding is a two way street",
-    		content:"this is a test to make sure I understand 2way-binding using v-model"},
+    		content:"this is a test to make sure I understand 2way-binding using v-model",
+    		categories:[]},
   };
 },
   methods:{
@@ -56,4 +71,13 @@ input[type="text"], textarea{
 h3{
     margin-top: 10px;
 }
+#checkboxes input{
+	display: inline-block;
+	margin-right: 10px;
+}
+#checkboxes label{
+	display: inline-block;
+}
+
+
 </style>
