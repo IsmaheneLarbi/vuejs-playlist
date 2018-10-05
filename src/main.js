@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueResource from 'vue-resource'//http requests
+import VueRouter from 'vue-router'
+import Routes from './routes'
 
 Vue.use(VueResource);
-//Global Custom Directive
-//binding = info about connection, el=element itself
-/*Vue.directive("rainbow", {
-		bind(el, binding, vnode){
-			el.style.color = "#" + Math.random().toString().slice(2, 8);
+Vue.use(VueRouter);
 
-		}
-	});
-*/
+
+const router = new VueRouter({
+	routes:Routes,
+});
+
 Vue.directive("theme", {
 	bind(el, binding, vnode){
 		if (binding.value == "wide")
@@ -32,15 +32,12 @@ Vue.directive("theme", {
 
 //Global Filter
 
-//Vue.filter('to-uppercase', function(value){
-//	return value.toUpperCase();
-//});
-
 Vue.filter('snippet', function(value){
 return value.slice(0, 100) + "...";
 });
 
 new Vue({
   el: '#app',
+  router:router,
   render: h => h(App)
 })
