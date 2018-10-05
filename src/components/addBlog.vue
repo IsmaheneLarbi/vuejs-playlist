@@ -1,7 +1,7 @@
 <template>
 	<div id="add-blog">
 		<h2>Add a New Blog Post</h2>
-		<form>
+		<form v-show = "!submitted">
 			<label>Blog Title:</label>
 			<input type="text" v-model.lazy="blog.title" required/>
 			<label>Blog Content</label>
@@ -49,18 +49,13 @@
     		categories:[],
     		author:""
     	},
-    	authors:["The Net Ninja", "The Angular Avenger", "The Killer of Bill"],
+    	authors:["The Net Ninja", "The Angular Avenger", "The Killer of Bill", "The Weeknd"],
     	submitted: false,
   };
 },
   methods:{
   	post(){
-  		this.$http.post("https://jsonplaceholder.typicode.com/posts", 
-  		{
-  			title:this.blog.title,
-  			body:this.blog.content,
-  			userId: 1,
-  		}).then(function(data) {
+  		this.$http.post("https://blog-e02b7.firebaseio.com/posts.json", this.blog).then(function(data){
   			console.log(data);
   			this.submitted = true;
   		});

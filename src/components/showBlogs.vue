@@ -2,10 +2,9 @@
 	<div v-theme:column="'narrow'" id="show-blogs">
 		<h1>All My Blogs Articles</h1>
 		<input type="text" placeholder="search blogs" v-model="search" />
-		<!--div v-for="blog in blogs" class="single-blog"-->
 		<div v-for="blog in filteredBlogs" class="single-blog">
-			<h2 v-rainbow>{{blog.title | to-uppercase}}</h2>
-			<article>{{blog.body | snippet}}</article>
+			<router-link v-bind:to ="'/blog/' + blog.id"><h2>{{blog.title | to-uppercase}}</h2></router-link>
+			<article>{{blog.content | snippet}}</article>
 		</div>
 	</div>
 </template>
@@ -26,9 +25,15 @@
   		},
   		//lifecycle hooks
   		created(){
-  			this.$http.get("https://jsonplaceholder.typicode.com/posts").then(function(data) {
-  					console.log(data);
-  					this.blogs = data.body.slice(0, 10);
+  			this.$http.get("https://blog-e02b7.firebaseio.com/posts.json").then(function(data) {
+  				return data.json();
+  			}).then(function (data) {
+  				var blogsArray = [];
+  				for (let key in data){
+  					data[key].id = key;
+  					blogsArray.push(data[key]);
+  				}
+  				this.blogs = blogsArray;
   			})
   		},
   		computed:{
